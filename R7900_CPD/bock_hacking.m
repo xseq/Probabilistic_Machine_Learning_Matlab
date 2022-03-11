@@ -7,7 +7,7 @@ T = 300;      %   # Number of observations.
 cp_prob = 1/100 ;% # Constant prior on changepoint probability.
 mean0 = 0 ;     % # Prior on Gaussian mean.
 prec0 = 0.1 ;   %# Prior on Gaussian precision.
- hazard=1/50;
+ hazard=1/50; 
 %%
  [data,  cpts ]=generate_data(mean0, prec0, T, cp_prob);
  %%
