@@ -3,12 +3,12 @@ function   R=bocd_cal(data, mean0,prec0, hazard,T)
  %  """
  % 1. Initialize lower triangular matrix representing the posterior as
  % function of time. Model parameters are initialized in the model class.
-    mean_params = [mean0];
-    prec_params = [prec0];
+    mean_params = mean0;
+    prec_params = prec0;
     
     R = zeros(T + 1, T + 1);
     R(1,1)= 1;
-    message =[1];
+    message =1;
    
     for t=2:T+1
 
