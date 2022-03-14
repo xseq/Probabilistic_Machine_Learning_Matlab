@@ -44,30 +44,4 @@ plot(cpts(:, [1 1])', ym(ones(length(cpts),1),:)','-k','LineWidth',1)
  ym = ylim;
 plot(ecp(:, [1 1])', ym(ones(length(ecp),1),:)','-k','LineWidth',1)
  
-%%
-
-
-
-
-function [data,  cpts ]=generate_data (mean0, prec0, T, cp_prob)
-%%    """Generate partitioned data of T observations according to constant
- % changepoint probability `cp_prob` with hyperpriors `mean0` and `prec0`.
-  means = [0];
-  data = [];
-  cpts = [];
-    for t=1:T
-        if rand< cp_prob
-            mean= normalrnd (mean0, 1 / prec0);
-            means=[means,mean];
-            cpts=[cpts;t];
-        end
-        data=[data;normalrnd(means(end), 1)];
-    end
-end
-
-
-function data_point_out = normalrnd (mean_in, var_in)
-    std_ev = sqrt(var_in);
-    data_point_out = mean_in + std_ev * randn;
-end
 
