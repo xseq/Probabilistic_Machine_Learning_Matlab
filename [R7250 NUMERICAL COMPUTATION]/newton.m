@@ -1,16 +1,21 @@
+
 x0 = 100;
+y_target = 0;
+
 x = x0;
 y = f(x);
-while y > eps
+while abs(y - y_target) > eps
     x = x - y/dfdx(x);
     y = f(x);
     disp(x)
 end
+x_out = x;
+disp('solution: ')
 disp(x)
 
 
 function y_out = f(x_in)
-    y_out = x_in^2 - 9;
+    y_out = x_in^2 - 81;
 end
 
 
