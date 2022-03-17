@@ -1,0 +1,15 @@
+x0 = 100;
+y0 = f(x0);
+while y0 > eps
+    
+    
+end
+
+function y_out = f(x_in)
+    y_out = x_in^2 - 9;
+end
+
+
+function dfdx_out = dfdx(x_in)
+    dfdx_out = 2 * x_in;
+end
