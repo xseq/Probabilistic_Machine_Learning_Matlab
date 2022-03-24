@@ -20,7 +20,7 @@ plot(cpts(:, [1 1])', ym(ones(length(cpts),1),:)','-k','LineWidth',1)
 figure
 findchangepts(data,'Statistic','mean','MaxNumChanges',2);
 %%
-R=bocd_cal(data, mean0,prec0, hazard,T);
+ R=bocd_cal(data, mean0,prec0, hazard,T);
  figure;
  subplot(2,1,1)
  plot(data,'LineWidth',1);
