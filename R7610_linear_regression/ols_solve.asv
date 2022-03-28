@@ -1,0 +1,6 @@
+clear; clc; close all;
+
+m = 5;
+n = 5;
+
+A = 
