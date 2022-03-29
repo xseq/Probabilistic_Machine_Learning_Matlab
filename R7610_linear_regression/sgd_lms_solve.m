@@ -28,12 +28,12 @@ for p = 1 : epochs
         X = data_raw(1, 1:cols-1);
         y = data_raw(1, cols);
 
-        % Forward propogation
+        % Forward propagation
         y_hat = X * W' + b;
         err = y_hat - y;
         L((p-1)*n_samples+q, 1) = err^2;
 
-        % Backward propogation
+        % Backward propagation
         W = W - eta * 2 * err * X;
         b = b - eta * 2 * err;    
     end
