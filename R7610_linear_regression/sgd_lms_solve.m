@@ -34,8 +34,8 @@ for p = 1 : epochs
         L((p-1)*n_samples+q, 1) = err^2;
 
         % Backward propogation
-        W = W - eta * err * X;
-        b = b - eta * err;    
+        W = W - eta * 2 * err * X;
+        b = b - eta * 2 * err;    
     end
 end
 
