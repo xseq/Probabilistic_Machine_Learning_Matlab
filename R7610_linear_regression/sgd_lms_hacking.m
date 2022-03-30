@@ -19,7 +19,7 @@ n_samples = rows;
 n_weights = cols - 1;
 
 W = ones(1, n_weights);    % weights
-b = 0;
+b = 0;                        % intercept
 L = zeros(n_samples * epochs, 1);    % loss
 eta = 0.05;                 % step size
 
