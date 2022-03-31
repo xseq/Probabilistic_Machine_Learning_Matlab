@@ -4,13 +4,17 @@
 % version.
 % Xuan Zhong, 03/30/2022
 
-function W = sgd_run(X, y)
+function [W, b] = sgd_lms_solve(X, y)
+    % todo: check matrix dimensions
 
+    [n_samples, n_features] = size(X);
+    n_weights = n_features;
+    
 
 end
 
 
-function sgd_initialize()
+function sgd_initialize(n_weights_in)
 
     W = ones(1, n_weights);    % weights
     b = 0;                        % intercept

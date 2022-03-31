@@ -4,23 +4,25 @@
 % version.
 % Xuan Zhong, 03/30/2022
 
-function [W, b] = sgd_lms_solve(X, y)
-    
-    [n_samples, n_features] = size(X);
+function sgd_model = sgd_lms_solve(X, y)
     % todo: check matrix dimensions
+
+    [n_samples, n_features] = size(X);
+    n_weights = n_features;
+    eta = 0.05;
     
+    sgd_model = sgd_initialize(n_samples, n_weights, eta);
     
 
 end
 
 
-function sgd_initialize()
+function sgd_model_out = sgd_initialize(n_samples_in, n_weights_in, eta_in)
 
-    W = ones(1, n_weights);    % weights
-    b = 0;                        % intercept
-    L = zeros(n_samples * epochs, 1);    % loss
-    eta = 0.05;                 % step size
-
+    sgd_model_out.W = ones(1, n_weights);    % weights
+    sgd_model_out.b = 0;                        % intercept
+    sgd_model_out.L = zeros(n_samples * epochs, 1);    % loss
+    sgd_model_out.eta = 0.05;                 % step size
 
 end
 
