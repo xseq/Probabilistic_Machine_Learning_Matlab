@@ -5,13 +5,13 @@
 % Xuan Zhong, 03/30/2022
 
 
-function sgd_model = sgd_lms_solve(X_data, y_data)
+function sgd_model = sgd_lms_solve(X_data, y_data, eta, n_epochs)
     % todo: check matrix dimensions
 
     [n_samples, n_features] = size(X_data);
     n_weights = n_features;
-    eta = 0.05;
-    n_epochs = 3;
+%     eta = 0.05;
+%     n_epochs = 3;
     
     sgd_model = sgd_initialize(n_samples, n_weights, eta, n_epochs);
     
@@ -19,7 +19,7 @@ function sgd_model = sgd_lms_solve(X_data, y_data)
         for q = 1 : n_samples
             X = X_data(q, :);
             y = y_data(q, 1);
-            sgd_model = sgd_update(sgd_model, X, y);
+            sgd_model = sgd_update(sgd_model, X, y, p, q);
         end
     end
 end
@@ -36,16 +36,19 @@ function sgd_model_out = sgd_initialize( ...
 end
 
 
-function [sgd_model_in, err] = sgd_update(sgd_model_in, X_in, y_in)
+function [sgd_model_in, err] = sgd_update(...
+    sgd_model_in, X_in, y_in, epoch_in, sample_idx_in)
 
+    n_samples = length(sgd_model_in.b);
+    
     % Forward propagation
     y_hat = X_in * sgd_model_in.W' + sgd_model_in.b;
     err = y_hat - y_in;
-    sgd_model_in.L((p-1)*n_samples+q, 1) = err^2;
+    sgd_model_in.L((epoch_in-1)*n_samples+sample_idx_in, 1) = err^2;
 
     % Backward propagation
     sgd_model_in.W = sgd_model_in.W - ...
-        sgd_model_in.eta * 2 * err * sgd_model_in.X;
+        sgd_model_in.eta * 2 * err * X_in;
     sgd_model_in.b = sgd_model_in.b - sgd_model_in.eta * 2 * err;
 
 end
