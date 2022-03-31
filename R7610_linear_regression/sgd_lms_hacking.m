@@ -21,12 +21,12 @@ n_weights = cols - 1;
 W = ones(1, n_weights);    % weights
 b = 0;                        % intercept
 L = zeros(n_samples * epochs, 1);    % loss
-eta = 0.05;                 % step size
+eta = 0.001;                 % step size
 
 for p = 1 : epochs
     for q = 1 : n_samples
-        X = data_raw(1, 1:cols-1);
-        y = data_raw(1, cols);
+        X = data_raw(q, 1:cols-1);
+        y = data_raw(q, cols);
 
         % Forward propagation
         y_hat = X * W' + b;

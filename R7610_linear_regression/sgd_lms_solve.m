@@ -4,27 +4,48 @@
 % version.
 % Xuan Zhong, 03/30/2022
 
-function sgd_model = sgd_lms_solve(X, y)
+
+function sgd_model = sgd_lms_solve(X_data, y_data)
     % todo: check matrix dimensions
 
     [n_samples, n_features] = size(X);
     n_weights = n_features;
     eta = 0.05;
+    n_epochs = 3;
     
-    sgd_model = sgd_initialize(n_samples, n_weights, eta);
+    sgd_model = sgd_initialize(n_samples, n_weights, eta, n_epochs);
     
+    for p = 1 : n_epochs
+        for q = 1 : n_samples
+            X = X_data(1, 1:cols-1);
+            y = y_data(1, cols);
+
+            % Forward propagation
+            y_hat = X * W' + b;
+            err = y_hat - y;
+            L((p-1)*n_samples+q, 1) = err^2;
+
+            % Backward propagation
+            W = W - eta * 2 * err * X;
+            b = b - eta * 2 * err;    
+        end
+    end
 
 end
 
 
-function sgd_model_out = sgd_initialize(n_samples_in, n_weights_in, eta_in)
+function sgd_model_out = sgd_initialize( ...
+        n_samples_in, n_weights_in, eta_in, n_epochs_in)
 
-    sgd_model_out.W = ones(1, n_weights);    % weights
+    sgd_model_out.W = ones(1, n_weights_in);    % weights
     sgd_model_out.b = 0;                        % intercept
-    sgd_model_out.L = zeros(n_samples * epochs, 1);    % loss
-    sgd_model_out.eta = 0.05;                 % step size
+    sgd_model_out.L = zeros(n_samples_in * n_epochs_in, 1);    % loss
+    sgd_model_out.eta = eta_in;                 % step size
 
 end
+
+
+
 
 
 % 
