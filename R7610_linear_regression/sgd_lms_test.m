@@ -14,6 +14,7 @@ data_raw = [
 
 X_data = data_raw(:, 1:2);
 y_data = data_raw(:, 3);
-model = sgd_lms_solve(X_data, y_data, 0.001, 300);
+[model, L] = sgd_lms_solve(X_data, y_data, 0.001, 3000);
 disp(model.W)
-plot(log(model.L))
+disp(model.b)
+plot(log(L))
