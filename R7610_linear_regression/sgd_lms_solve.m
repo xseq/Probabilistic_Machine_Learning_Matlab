@@ -4,8 +4,12 @@
 % version.
 % Xuan Zhong, 03/30/2022
 
-function W = sgd_run(X, y)
-
+function [W, b] = sgd_lms_solve(X, y)
+    
+    [n_samples, n_features] = size(X);
+    % todo: check matrix dimensions
+    
+    
 
 end
 
