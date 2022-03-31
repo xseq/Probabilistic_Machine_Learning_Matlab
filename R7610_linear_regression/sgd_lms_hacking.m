@@ -13,7 +13,7 @@ data_raw = [
     ];
 
 % Initialization
-epochs = 3;
+epochs = 3000;
 [rows, cols] = size(data_raw);
 n_samples = rows;
 n_weights = cols - 1;
@@ -21,7 +21,7 @@ n_weights = cols - 1;
 W = ones(1, n_weights);    % weights
 b = 0;                        % intercept
 L = zeros(n_samples * epochs, 1);    % loss
-eta = 0.001;                 % step size
+eta = 0.01;                 % step size
 
 for p = 1 : epochs
     for q = 1 : n_samples

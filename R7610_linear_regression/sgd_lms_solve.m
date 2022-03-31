@@ -8,7 +8,7 @@
 function sgd_model = sgd_lms_solve(X_data, y_data)
     % todo: check matrix dimensions
 
-    [n_samples, n_features] = size(X);
+    [n_samples, n_features] = size(X_data);
     n_weights = n_features;
     eta = 0.05;
     n_epochs = 3;
@@ -17,20 +17,11 @@ function sgd_model = sgd_lms_solve(X_data, y_data)
     
     for p = 1 : n_epochs
         for q = 1 : n_samples
-            X = X_data(1, 1:cols-1);
-            y = y_data(1, cols);
-
-            % Forward propagation
-            y_hat = X * W' + b;
-            err = y_hat - y;
-            L((p-1)*n_samples+q, 1) = err^2;
-
-            % Backward propagation
-            W = W - eta * 2 * err * X;
-            b = b - eta * 2 * err;    
+            X = X_data(q, :);
+            y = y_data(q, 1);
+            sgd_model = sgd_update(sgd_model, X, y);
         end
     end
-
 end
 
 
@@ -45,37 +36,17 @@ function sgd_model_out = sgd_initialize( ...
 end
 
 
+function [sgd_model_in, err] = sgd_update(sgd_model_in, X_in, y_in)
 
+    % Forward propagation
+    y_hat = X_in * sgd_model_in.W' + sgd_model_in.b;
+    err = y_hat - y_in;
+    sgd_model_in.L((p-1)*n_samples+q, 1) = err^2;
 
+    % Backward propagation
+    sgd_model_in.W = sgd_model_in.W - ...
+        sgd_model_in.eta * 2 * err * sgd_model_in.X;
+    sgd_model_in.b = sgd_model_in.b - sgd_model_in.eta * 2 * err;
 
-% 
-% 
-% % Initialization
-% epochs = 3;
-% [rows, cols] = size(data_raw);
-% n_samples = rows;
-% n_weights = cols - 1;
-% 
-% W = ones(1, n_weights);    % weights
-% b = 0;                        % intercept
-% L = zeros(n_samples * epochs, 1);    % loss
-% eta = 0.05;                 % step size
-% 
-% for p = 1 : epochs
-%     for q = 1 : n_samples
-%         X = data_raw(1, 1:cols-1);
-%         y = data_raw(1, cols);
-% 
-%         % Forward propagation
-%         y_hat = X * W' + b;
-%         err = y_hat - y;
-%         L((p-1)*n_samples+q, 1) = err^2;
-% 
-%         % Backward propagation
-%         W = W - eta * 2 * err * X;
-%         b = b - eta * 2 * err;    
-%     end
-% end
-% 
-% plot(log(L))
-% 
+end
+
