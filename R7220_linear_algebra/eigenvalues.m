@@ -1,13 +1,15 @@
 % Murphy PML 7.4
 
 clear; clc;
-X = [3, 4; 
-    5, 6];
-[V, D] = eig(X)
-v1 = V(:, 1)
-v2 = V(:, 2)
-aaa1 = X * v1
-aaa2 = D(1, 1) .* v1
+matrix = [3, 4; 
+        5, 6];
+[eigenvectors, eigenvalue] = eig(matrix)
+eigenvector1 = eigenvectors(:, 1)
+eigenvector2 = eigenvectors(:, 2)
+left1 = matrix * eigenvector1
+right1 = eigenvalue(1, 1) .* eigenvector2
+left2 = matrix * eigenvector2
+right2 = eigenvalue(2, 2) .* eigenvector2
 
 
 
