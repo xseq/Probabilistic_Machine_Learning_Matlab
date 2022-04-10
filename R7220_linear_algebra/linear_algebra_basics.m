@@ -11,6 +11,5 @@ c_trace = trace(c)
 c_determinant = det(c)
 c_orthogonal = orth(c)
 
-[u_matrix, s_matrix, v_matrix] = svd(a_matrix)
 
 

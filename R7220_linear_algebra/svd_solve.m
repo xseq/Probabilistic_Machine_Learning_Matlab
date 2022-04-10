@@ -1,11 +1,7 @@
-aaa =  [0, 1; 
+a_matrix =  [0, 1; 
         2, 1; 
         1, 0]
     
-b = reshape(aaa, [2, 3])
-c = aaa*aaa'
-d = trace(c)
-e = det(c)
-[u, s, v] = svd(aaa)
 
-a_rank = rank(aaa)
+[u_matrix, s_matrix, v_matrix] = svd(a_matrix)
+
