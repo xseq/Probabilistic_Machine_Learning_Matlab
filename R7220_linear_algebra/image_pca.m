@@ -14,7 +14,7 @@ data = img_gray(1:len_edge, 1:len_edge);
 % eigenvalues and eigenvectors
 eig_values = eig(data);
 [V, D] = eig(data);
-out = V * D * V';
+out = V * D * inv(V);
 imshow(out);
 
 
