@@ -1,6 +1,10 @@
 source:
 
+cityscape
 https://pixabay.com/photos/cityscape-monochrome-bridge-city-7095358/
+
+manpose
+https://pixabay.com/photos/man-pose-model-monochrome-male-4035612/
 
  Pixabay License
 Free for commercial use
