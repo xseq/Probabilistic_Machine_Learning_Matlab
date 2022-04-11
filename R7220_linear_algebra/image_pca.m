@@ -12,9 +12,11 @@ data = img_gray(1:len_edge, 1:len_edge);
 % imshow(data);
 
 % eigenvalues and eigenvectors
-eig_values = eig(data);
 [V, D] = eig(data);
+
+% pca
+n_keep = 30;
+D(n_keep+1:end, :) = 0;
 out = V * D * inv(V);
 imshow(out);
-
 
