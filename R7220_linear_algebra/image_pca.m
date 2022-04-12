@@ -1,5 +1,5 @@
 
-% image compression with PCA
+% image compression with PCA, basic version
 
 % get the gray image data
 img = imread('cityscape.jpg');
