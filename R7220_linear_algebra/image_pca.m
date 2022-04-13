@@ -1,22 +1,46 @@
-
 % image compression with PCA, basic version
+% refernce: https://github.com/Wanggcong/Statistical-Analysis-Method-/blob/master/project3/16337292_%E8%A2%81%E6%B5%A9%E6%89%AC/pca.m
+
+
+clear; 
+clc; 
+close all;
+
+
+% parameters
+comp_ratio = 0.3;
+
 
 % get the gray image data
 img = imread('cityscape.jpg');
-img_gray = im2double(rgb2gray(img));
+data = im2double(rgb2gray(img));
+[n_col, ~] = size(img);
 
-% take only the square part
-[original_row, origina_col] = size(img_gray);
-len_edge = min(original_row, origina_col);
-data = img_gray(1:len_edge, 1:len_edge);
-% imshow(data);
 
-% eigenvalues and eigenvectors
-[V, D] = eig(data);
+% whitening
+avg = mean(mean(data));
+white_data = data - avg;
 
-% pca
-n_keep = 30;
-D(n_keep+1:end, :) = 0;
-out = V * D * inv(V);
-imshow(out);
+
+% covariance matrix
+cov_mat = white_data * white_data';
+
+
+% eigen values and vectors
+[eig_vctr, eig_values] = eig(cov_mat);
+[~, order] = sort(diag(eig_values), 'descend');
+eig_vctr = eig_vctr(:, order);
+
+
+% compression
+eig_vctr_comp = eig_vctr(:, 1:floor(n_col*comp_ratio));
+img_regen = (white_data' * eig_vctr_comp) * eig_vctr_comp';
+img_regen = img_regen' + avg;
+% img_diff = data - img_regen;
+
+
+% plotting
+figure(1),subplot(121),imshow(data,[]); title('Original Image');
+figure(1),subplot(122),imshow(img_regen,[]); title('Recovered img');
+
 
