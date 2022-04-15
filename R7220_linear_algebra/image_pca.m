@@ -10,9 +10,9 @@ close all;
 comp_ratio = 0.3;
 
 % get the gray image data
-img = imread('cityscape.jpg');
+img = imread('manpose.jpg');
 data = im2double(rgb2gray(img));
-[n_col, ~] = size(img);
+[n_col, n_row] = size(img);
 % TODO optional: block processing
 
 % whitening
@@ -32,6 +32,12 @@ eig_vctr_comp = eig_vctr(:, 1:floor(n_col*comp_ratio));
 img_regen = (white_data' * eig_vctr_comp) * eig_vctr_comp';
 img_regen = img_regen' + avg;
 % optional TODO: difference between original and compressed images.
+
+% calculate errors - PMLAI 20.1.4.1
+% TODO: why is this not zero when compression ratio is 1?
+loss = sum(sum((img_regen - data).^2)) / (n_col * n_row);
+disp('Loss = ');
+disp(loss);
 
 % plotting
 figure(1),subplot(121),imshow(data,[]); title('Original Image');
