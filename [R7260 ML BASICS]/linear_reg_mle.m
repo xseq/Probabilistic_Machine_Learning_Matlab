@@ -1,6 +1,6 @@
 % mean square error algorithm, based on goodfellow book 5.1.4
 
-function [a_out, b_out] = mse(x_in, y_in)
+function [a_out, b_out] = linear_reg_mle(x_in, y_in)
 
     x_avg = mean(x_in);
     x2_avg = mean(x_in.^2);

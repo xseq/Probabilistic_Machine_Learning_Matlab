@@ -2,7 +2,7 @@ clear; clc;
 load('mse_data_set.mat');
 xxx = x(:, 1)';   % training with the first 30 samples
 yyy = x(:, 2)';
-[a, b] = mse(xxx, yyy);
+[a, b] = linear_reg_mle(xxx, yyy);
 
 % Plotting
 x_max = 1.2 * max(xxx);
