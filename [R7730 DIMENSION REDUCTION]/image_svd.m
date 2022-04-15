@@ -8,7 +8,7 @@ close all;
 
 % parameters
 % comp_ratio = 0.3;
-top_n = 200;
+top_n = 100;
 
 % get the gray image data
 img = imread('manpose.jpg');
@@ -18,15 +18,19 @@ data = im2double(rgb2gray(img));
 
 [U, S, V] = svd(data);
 
+% TODO: not working
 svd_mat = zeros(size(data));
-for p = 1 : top_n
+for p = 1 : 11
    svd_mat = svd_mat + ...
-       (U(:, p) * V(p, :)) .* S(p, p);    
+       U(:, p) * V(:, p)' .* S(p, p);    
 end
 
+% svd_mat = U * S * V';
+
 figure;
+subplot(121)
 imshow(img);
-figure;
+subplot(122)
 imshow(svd_mat);
 
 
