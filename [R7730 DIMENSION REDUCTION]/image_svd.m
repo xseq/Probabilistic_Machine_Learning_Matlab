@@ -16,7 +16,11 @@ data = im2double(rgb2gray(img));
 [n_col, n_row] = size(img);
 % TODO optional: block processing
 
+% SVD
 [U, S, V] = svd(data);
+% U
+% S
+% D
 
 
 svd_mat = zeros(size(data));
