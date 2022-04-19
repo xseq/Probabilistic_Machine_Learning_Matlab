@@ -13,7 +13,7 @@ data_raw = [
     ];
 
 % Initialization
-epochs = 3000;
+epochs = 30;
 [rows, cols] = size(data_raw);
 n_samples = rows;
 n_weights = cols - 1;
@@ -21,7 +21,7 @@ n_weights = cols - 1;
 W = ones(1, n_weights);     % weights, 1x2
 b = 0;                      % intercept, 1x1
 L_rec = zeros(1, epochs);       % loss recorder
-eta = 0.001;                 % step size
+eta = 0.01;                 % step size
 
 for p = 1 : epochs
     X = data_raw(:, 1 : cols-1);    % input matrix, 6x2
@@ -30,16 +30,29 @@ for p = 1 : epochs
     % Forward propogation
     y_hat = X * W' + b;             % 6x2
     err = y_hat - y;                % 6x1
-    L = sum(err .^ 2) / n_samples;  % 1x1
+    L = sum(err .^ 2) / n_samples;
     
     % Backward propogation
-    W = W - eta * 2 * err' * X;     % 2x1
-    b = b - eta * 2 * sum(err);     % 1x1
+    W = W - eta * 2 * X' * err;
+    b = b - eta * 2 * err;
     
     % recorder
     L_rec(1, p) = L;                % recorder
-
+    
+%     for q = 1 : n_samples
+%         X = data_raw(q, 1 : cols-1);
+%         y = data_raw(q, cols);
+% 
+%         % Forward propagation
+%         y_hat = X * W' + b;
+%         err = y_hat - y;
+%         L((p-1)*n_samples+q, 1) = err^2;
+% 
+%         % Backward propagation
+%         W = W - eta * 2 * err * X;
+%         b = b - eta * 2 * err;    
+%     end
 end
 
-plot(log(L_rec))
+plot(log(L_logL))
 
