@@ -30,7 +30,7 @@ function sgd_model_out = sgd_initialize( ...
 
     sgd_model_out.W = ones(1, n_weights_in);    % weights
     sgd_model_out.b = 0;                        % intercept
-    sgd_model_out.err = 0;    % loss
+    sgd_model_out.err = 0;                      % loss
     sgd_model_out.eta = eta_in;                 % step size
 
 end
@@ -44,8 +44,7 @@ function [sgd_model_in, err] = sgd_update(...
     err = y_hat - y_in;
 
     % Backward propagation
-    sgd_model_in.W = sgd_model_in.W - ...
-        sgd_model_in.eta * 2 * err * X_in;
+    sgd_model_in.W = sgd_model_in.W - sgd_model_in.eta * 2 * err * X_in;
     sgd_model_in.b = sgd_model_in.b - sgd_model_in.eta * 2 * err;
 
 end
