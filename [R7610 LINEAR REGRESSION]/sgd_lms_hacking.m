@@ -1,5 +1,6 @@
 % Murphy PML book section 8.4
 % Also see: 7610 notes and supplement materials
+% 04/18/2022, major update, processing the dataset as a whole
 
 % Dataset, first columns are X, last columne is Y
 clear; clc; close all;
@@ -21,7 +22,7 @@ n_weights = cols - 1;
 W = ones(1, n_weights);     % weights, 1x2
 b = 0;                      % intercept, 1x1
 L_rec = zeros(1, epochs);       % loss recorder
-eta = 0.001;                 % step size
+eta = 0.005;                 % step size
 
 for p = 1 : epochs
     X = data_raw(:, 1 : cols-1);    % input matrix, 6x2

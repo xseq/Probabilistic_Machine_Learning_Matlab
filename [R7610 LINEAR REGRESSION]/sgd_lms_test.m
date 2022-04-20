@@ -1,5 +1,6 @@
 % Murphy PML book section 8.4
 % Also see: 7610 notes and supplement materials
+% still has some issues;
 
 % Dataset, first columns are X, last columne is Y
 clear; clc; close all;
@@ -23,7 +24,11 @@ y_data=[39.86 65.99 64.98 80.10 85.65 92.11 95.10 99.12 101.23 119.85]';
 % y_data = data_raw(:, 3);
 
 
-[model, L] = sgd_lms_solve(X_data, y_data, 0.00001, 3000);
-disp(model.W)
-disp(model.b)
+[W, b, L] = sgd_lms_solve(X_data, y_data, 0.00001, 300000);
+disp('W:')
+disp(W)
+disp('b:')
+disp(b)
+disp('Ending loss:')
+disp(L(1, end))
 plot(log(L))
