@@ -23,7 +23,7 @@ data = im2double(rgb2gray(img));
 
 
 svd_mat = zeros(size(data));
-for p = 1 : 111
+for p = 1 : top_n
    svd_mat = svd_mat + ...
        U(:, p) .* S(p, p) * V(:, p)';    
 end
