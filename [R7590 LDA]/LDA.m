@@ -1,5 +1,6 @@
 % LDA, Murphy PMLAI, Section 9.2.2
 % reference: https://github.com/farnazgh/Linear-discriminant-analysis
+% reference: https://zhuanlan.zhihu.com/p/264578345
 
 clear; clc; close all;
 
