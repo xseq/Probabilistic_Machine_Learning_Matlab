@@ -32,6 +32,7 @@ test_data = [test_data_1; test_data_0];
 test_label = [test_label_1; test_label_0];
 
 % likelihood
+% the first item x1_avg_1 is the average of feature x1 given result y = 1
 x1_avg_1 = mean(train_data_1(:, 1));   % pedal length
 x1_std_1 = std(train_data_1(:, 1));
 x1_avg_0 = mean(train_data_0(:, 1));
