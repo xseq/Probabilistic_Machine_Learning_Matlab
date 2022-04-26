@@ -40,9 +40,9 @@ disp('recall: ')
 disp(recall)
 
 figure; 
-scatter(train_data_1(:, 1), train_data_1(:, 2)); 
+scatter(train_data_1); 
 hold on; 
-scatter(train_data_0(:, 1), train_data_0(:, 2))
+scatter(train_data_0)
 
 
 
