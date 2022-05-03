@@ -1,6 +1,6 @@
-x = -5 : 0.1 : 5
+x = -5 : 0.1 : 5;
 
-y = sigmoid(x)
+y = sigmoid(x);
 
 plot(x, y)
 
