@@ -46,10 +46,10 @@ train_data = [train_data, ones(n_data, 1)]; % expansion
 n_features = 3;  % 2+1
 theta = zeros(1, n_features);
 
-epochs = 30000;
+epochs = 3000;
 loss_rec = zeros(epochs, 1);
 
-% training
+% training 
 for p = 1 : epochs
     dt = zeros(1, n_features);
     J = 0;
