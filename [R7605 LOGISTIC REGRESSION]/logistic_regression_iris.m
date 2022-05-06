@@ -1,6 +1,10 @@
 % logistic regression of Murphy PML book
-
 % would use classes Versicolour(ve) and Virginica(vi)
+
+% todo: EDA
+% todo: draw the split line between classes
+% todo: LDA modeling
+% todo: in python
 
 %. Attribute Information:
 %    1. sepal length in cm
@@ -40,7 +44,7 @@ test_data = [test_data_ve; test_data_vi];
 test_label = [test_label_ve; test_label_vi];
 
 % parameters
-eta =0.1;  % learning rate
+eta = 1;  % learning rate
 n_samples = length(train_data);
 train_data = [train_data, ones(n_samples, 1)]; % expansion
 features = 3;  % 2+1
@@ -59,10 +63,10 @@ for p = 1 : epochs
     logit = (w * x')';   % 10.9
     h = 1 ./ (1 + exp(-logit));   % 10.2
     nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % 10.10
+    loss_rec(p, 1) = nll;
     
     % backward propogation
-    dt = (h - y)' * x;
-    loss_rec(p, 1) = nll;
+    dt = (h - y)' * x / n_samples;  % 10.22
     w = w - eta * dt / n_samples;    
  
 end
