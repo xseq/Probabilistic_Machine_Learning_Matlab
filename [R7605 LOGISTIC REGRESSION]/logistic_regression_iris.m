@@ -1,4 +1,4 @@
-% very naive Bayes model, multi classes
+% logistic regression of Murphy PML book
 
 % would use classes Versicolour(ve) and Virginica(vi)
 
@@ -40,29 +40,31 @@ test_data = [test_data_ve; test_data_vi];
 test_label = [test_label_ve; test_label_vi];
 
 % parameters
-eta = 0.0001;  % learning rate
-n_data = length(train_data);
-train_data = [train_data, ones(n_data, 1)]; % expansion
-n_features = 3;  % 2+1
-theta = zeros(1, n_features);
+eta =0.1;  % learning rate
+n_samples = length(train_data);
+train_data = [train_data, ones(n_samples, 1)]; % expansion
+features = 3;  % 2+1
+w = zeros(1, features);
 
-epochs = 3000;
+epochs = 30000;
 loss_rec = zeros(epochs, 1);
 
 % training 
 for p = 1 : epochs
-    dt = zeros(1, n_features);
-    J = 0;
-    for q = 1 : n_data
-        x = train_data(q, :);
-        y = train_label(q, 1);
-        h = 1 / (1 + exp(-theta * x'));
-        dt = dt + (h - y) * x;
-        J = J + y * log(h) + (1 - y) * (1 - h);
-    end
-    J = -J / n_data;
-    loss_rec(p, 1) = J;
-    theta = theta - eta * dt / n_data;    
+    % data
+    x = train_data;
+    y = train_label;
+    
+    % forward propogation
+    logit = (w * x')';   % 10.9
+    h = 1 ./ (1 + exp(-logit));   % 10.2
+    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % 10.10
+    
+    % backward propogation
+    dt = (h - y)' * x;
+    loss_rec(p, 1) = nll;
+    w = w - eta * dt / n_samples;    
+ 
 end
 
 % Inference
