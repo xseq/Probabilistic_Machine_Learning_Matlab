@@ -1,6 +1,6 @@
 # PML_Matlab
 
-This is a Matlab realization of the algorithms in Kevin P. Murphy's Probabilistic Machine Learning: An introduction
+This is a Matlab realization of the algorithms in the book Probabilistic Machine Learning: An introduction
 
 
  @book{pml1Book,
