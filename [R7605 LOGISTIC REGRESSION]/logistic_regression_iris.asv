@@ -71,15 +71,12 @@ for p = 1 : epochs
 end
 
 % Inference
-x = [test_data, ones(length(test_data), 1)];
+x = test_data;
 y = test_label;
 
-logit = (w * x')';
-h = 1 ./ (1 + exp(-logit));
-y_hat = (h > 0.5);    % prediction
-accuracy = sum(y_hat == y) / length(y);
-disp('accuracy: ');
-disp(accuracy)
+logit = 
+
+
 
 
 % result = (test_predict == test_label);
