@@ -74,25 +74,31 @@ end
 x = [test_data, ones(length(test_data), 1)];
 y = test_label;
 
-logit = (w * x')';
+logit = (w * x')';                  % 10.5
 h = 1 ./ (1 + exp(-logit));
 y_hat = (h > 0.5);    % prediction
-accuracy = sum(y_hat == y) / length(y);
-disp('accuracy: ');
-disp(accuracy)
+recall = sum(y_hat == y) / length(y);
+disp('recall: ');
+disp(recall)
 
 
-% result = (test_predict == test_label);
-% recall = sum(result) / length(test_label);
-% disp('recall: ')
-% disp(recall)
+raw_data_ve = cell2mat(raw_data_ve(1:50, 3:4));
+raw_data_vi = cell2mat(raw_data_vi(1:50, 3:4));
 
-% figure; 
-% scatter(train_data_1(:, 1), train_data_1(:, 2)); 
-% hold on; 
-% scatter(train_data_2(:, 1), train_data_2(:, 2));
+figure; 
+scatter(raw_data_ve(:, 1), raw_data_ve(:, 2), 'b*'); 
+hold on; 
+scatter(raw_data_vi(:, 1), raw_data_vi(:, 2), 'r*');
+hold on;
+xx = 3:0.1:7;
+yy = (-w(1) * xx - w(3)) / w(2);     % p. 334
+plot(xx, yy)
 
-figure;
-plot(loss_rec);
+% figure;
+% plot(loss_rec);
+
+
+
+
 
 
