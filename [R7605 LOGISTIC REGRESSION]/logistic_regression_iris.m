@@ -1,12 +1,9 @@
 % logistic regression of Murphy PML book
 % would use classes Versicolour(ve) and Virginica(vi)
 
-% todo: EDA
-% todo: draw the split line between classes
-% todo: LDA modeling
-% todo: in python
-
-%. Attribute Information:
+% Dataset: iris
+% Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science. 
+% Attribute Information:
 %    1. sepal length in cm
 %    2. sepal width in cm
 %    3. petal length in cm
@@ -62,8 +59,8 @@ for p = 1 : epochs
     % forward propogation
     logit = (w * x')';   % 10.9
     h = 1 ./ (1 + exp(-logit));   % 10.2
-    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % 10.10
-    loss_rec(p, 1) = nll;
+    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % 10.27
+    loss_rec(p, 1) = nll;   % 10.28
     
     % backward propogation
     dt = (h - y)' * x / n_samples;  % 10.22
