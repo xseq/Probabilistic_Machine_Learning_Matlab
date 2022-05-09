@@ -1,9 +1,12 @@
 % Based on Murphy PML1 book (2022)
-% would use classes Versicolour(ve) and Virginica(vi)
 % Multinomial logistic regression
+% reference (in Chinese): https://zhuanlan.zhihu.com/p/450845941
 
 % Dataset: iris
-% Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science. 
+% Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
+% [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, 
+% School of Information and Computer Science. 
+
 % Attribute Information:
 %    1. sepal length in cm
 %    2. sepal width in cm

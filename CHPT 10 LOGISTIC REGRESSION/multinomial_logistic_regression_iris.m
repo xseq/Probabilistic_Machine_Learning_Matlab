@@ -2,7 +2,10 @@
 % would use classes Versicolour(ve) and Virginica(vi)
 
 % Dataset: iris
-% Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science. 
+% Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
+% [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, 
+% School of Information and Computer Science. 
+
 % Attribute Information:
 %    1. sepal length in cm
 %    2. sepal width in cm
@@ -57,14 +60,14 @@ for p = 1 : epochs
     y = train_label;
     
     % forward propogation
-    logit = (w * x')';   % eq. 10.9
-    h = 1 ./ (1 + exp(-logit));   % 10.2
-    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % 10.27
-    loss_rec(p, 1) = nll;   % 10.28
+    logit = (w * x')';               % eq. 10.9
+    h = 1 ./ (1 + exp(-logit));      % eq. 10.2
+    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % eq. 10.27
+    loss_rec(p, 1) = nll;
     
     % backward propogation
-    dt = (h - y)' * x / n_samples;  % 10.22
-    w = w - eta * dt / n_samples; 
+    dt = (h - y)' * x / n_samples;   % eq. 10.22
+    w = w - eta * dt / n_samples;    % eq. 10.28
 end
 
 % Inference
@@ -83,10 +86,12 @@ raw_data_ve = cell2mat(raw_data_ve(1:50, 3:4));
 raw_data_vi = cell2mat(raw_data_vi(1:50, 3:4));
 
 figure; 
-scatter(raw_data_ve(:, 1), raw_data_ve(:, 2), 'b*'); 
+scatter(raw_data_ve(:, 1), raw_data_ve(:, 2), 'bo'); 
 hold on; 
-scatter(raw_data_vi(:, 1), raw_data_vi(:, 2), 'r*');
+scatter(raw_data_vi(:, 1), raw_data_vi(:, 2), 'ro');
 hold on;
+
+% plotting the decision boundary
 x1 = 3:0.1:7;
 x2 = (-w(1) * x1 - w(3)) / w(2);     % p. 334
 plot(x1, x2)
