@@ -26,7 +26,7 @@ raw_data_ve = iris_data(51:100, :);       % Versicolour
 raw_data_vi = iris_data(101:150, :);      % Virginica
 
 
-% splitting dataset
+% splitting dataset, hard coded for now
 
 train_data_se = cell2mat(raw_data_se(1:30, 3:4));
 train_label_se = [ones(30, 1), zeros(30, 1), zeros(30, 1)];
@@ -49,30 +49,34 @@ test_label_vi = [ones(20, 1), zeros(20, 1), zeros(20, 1)];
 train_data = [train_data_se; train_data_ve; train_data_vi];
 train_label = [train_label_se; train_label_ve; train_label_vi];
 
-test_data = [test_data_ve; test_data_vi];
+test_data = [test_data_se; test_data_ve; test_data_vi];
 test_label = [test_label_se; test_label_ve; test_label_vi];
 
 
 % parameters
 eta = 0.1;  % learning rate
 n_samples = length(train_data);
-train_data = [train_data, ones(n_samples, 1)]; % expansion
-features = 3;  % 2+1
-w = zeros(1, features);
+train_data = [train_data, ones(n_samples, 1)]; % add intercept
+n_features = 3;  % 2 features and 1 intercept
+w = ones(1, n_features);
 
-epochs = 30000;
+epochs = 300;
 loss_rec = zeros(epochs, 1);
 
 % training 
 for p = 1 : epochs
     % data
     x = train_data;
-    y = train_label;
+    y = train_label;  % one-hot
     
     % forward propogation
-    logit = (w * x')';               % eq. 10.9
-    h = 1 ./ (1 + exp(-logit));      % eq. 10.2
-    nll = -sum(y .* log(h) + (1 - y) .* log(1 - h)) / n_samples;  % eq. 10.27
+    logit = (w * x')';                  % eq. 10.9
+    h = exp(logit) / sum(exp(logit));   % eq. 10.55, softmax
+    nll = zeros(n_samples, 1);
+    for q = 1 : n_features
+        nll = nll + y(:, q) .* log(h');        
+    end
+    nll = - nll / n_samples;    % eq. 10.58, crossentropy
     loss_rec(p, 1) = nll;
     
     % backward propogation
