@@ -72,11 +72,11 @@ for p = 1 : epochs
     % forward propogation
     logit = (w * x')';                  % eq. 10.9
     h = exp(logit) / sum(exp(logit));   % eq. 10.55, softmax
-    nll = zeros(n_samples, 1);
+    nll = 0;
     for q = 1 : n_features
-        nll = nll + y(:, q) .* log(h');        
+        nll = nll + sum(y(:, q) .* log(h'));        
     end
-    nll = - nll / n_samples;    % eq. 10.58, crossentropy
+    nll = - nll / n_samples;    % eq. 10.58, crossentropy ???
     loss_rec(p, 1) = nll;
     
     % backward propogation
