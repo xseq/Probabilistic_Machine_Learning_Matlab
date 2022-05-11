@@ -1,4 +1,7 @@
 % Multinomial logistic regression example with iris dataset
+% working version
+% todo: plot boundaries
+
 % Based on Murphy PML1 book (2022)
 
 % Dataset: iris
@@ -30,23 +33,23 @@ n_features = 3;  % 2 features and 1 intercept
 n_classes = 3;
 w = ones(n_classes, n_features);  % rows for classes
 
-epochs = 30000;
+epochs = 3000;
 loss_rec = zeros(epochs, 1);
 
 % training 
-for p = 1 : epochs
-    % data
-    x = train_data;
-    y = train_label;  % one-hot
+% data
+x = train_data;
+y = train_label;  % one-hot
     
+for p = 1 : epochs    
     % forward propogation
-    logit = (w * x')';                     % eq. 10.9
-    h = exp(logit) ./ sum(exp(logit), 2); % eq. 10.55, softmax
-    nll = - sum(sum(y .* log(h))) / n_samples;
+    logit = (w * x')';                           % eq. 10.9
+    h = exp(logit) ./ sum(exp(logit), 2);        % eq. 10.55, softmax
+    nll = - sum(sum(y .* log(h))) / n_samples;   % eq. 10.58
     loss_rec(p, 1) = nll;
     
     % backward propogation
-    dt = (h - y)' * x / n_samples;   % eq. 10.22
+    dt = (h - y)' * x / n_samples;   % eq. 10.68
     w = w - eta * dt / n_samples;    % eq. 10.28
 end
 
@@ -85,9 +88,5 @@ hold on;
 
 % figure;
 % plot(loss_rec);
-
-
-
-
 
 
