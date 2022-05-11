@@ -44,13 +44,16 @@ test_data_ve = cell2mat(raw_data_ve(31:50, 3:4));
 test_label_ve = [zeros(20, 1), ones(20, 1), zeros(20, 1)];
 
 test_data_vi = cell2mat(raw_data_vi(31:50, 3:4));
-test_label_vi = [ones(20, 1), zeros(20, 1), zeros(20, 1)];
+test_label_vi = [zeros(20, 1), zeros(20, 1), ones(20, 1)];
 
 train_data = [train_data_se; train_data_ve; train_data_vi];
 train_label = [train_label_se; train_label_ve; train_label_vi];
 
 test_data = [test_data_ve; test_data_vi];
 test_label = [test_label_ve; test_label_vi];
+
+save('../data/iris_split.mat');
+
 
 % parameters
 eta = 1;  % learning rate

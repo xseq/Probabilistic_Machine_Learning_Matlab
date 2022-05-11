@@ -23,13 +23,14 @@ load('../data/iris_split.mat')
 
 
 % parameters
-eta = 0.1;  % learning rate
+eta = 5;  % learning rate
 n_samples = length(train_data);
 train_data = [train_data, ones(n_samples, 1)]; % add intercept
 n_features = 3;  % 2 features and 1 intercept
-w = ones(1, n_features);
+n_classes = 3;
+w = ones(n_classes, n_features);  % rows for classes
 
-epochs = 300;
+epochs = 30000;
 loss_rec = zeros(epochs, 1);
 
 % training 
@@ -39,13 +40,9 @@ for p = 1 : epochs
     y = train_label;  % one-hot
     
     % forward propogation
-    logit = (w * x')';                  % eq. 10.9
-    h = exp(logit) / sum(exp(logit));   % eq. 10.55, softmax
-    nll = 0;
-    for q = 1 : n_features
-        nll = nll + sum(y(:, q) .* log(h'));        
-    end
-    nll = - nll / n_samples;    % eq. 10.58, crossentropy ???
+    logit = (w * x')';                     % eq. 10.9
+    h = exp(logit) ./ sum(exp(logit), 2); % eq. 10.55, softmax
+    nll = - sum(sum(y .* log(h))) / n_samples;
     loss_rec(p, 1) = nll;
     
     % backward propogation
@@ -53,31 +50,38 @@ for p = 1 : epochs
     w = w - eta * dt / n_samples;    % eq. 10.28
 end
 
+plot(loss_rec)
+
 % Inference
 x = [test_data, ones(length(test_data), 1)];
 y = test_label;
 
-logit = (w * x')';                  % 10.5
-h = 1 ./ (1 + exp(-logit));
-y_hat = (h > 0.5);    % prediction
-recall = sum(y_hat == y) / length(y);
+logit = (w * x')';                     % eq. 10.9
+h = exp(logit) ./ sum(exp(logit), 2); % eq. 10.55, softmax
+[~, idx_h] = max(h, [], 2);
+[~, idx_y] = max(y, [], 2);
+recall = sum(idx_h == idx_y) / length(y);
 disp('recall: ');
-disp(recall)
+disp(recall);
 
 
+raw_data_se = cell2mat(raw_data_se(1:50, 3:4));
 raw_data_ve = cell2mat(raw_data_ve(1:50, 3:4));
 raw_data_vi = cell2mat(raw_data_vi(1:50, 3:4));
 
 figure; 
+scatter(raw_data_se(:, 1), raw_data_se(:, 2), 'go'); 
+hold on; 
 scatter(raw_data_ve(:, 1), raw_data_ve(:, 2), 'bo'); 
 hold on; 
 scatter(raw_data_vi(:, 1), raw_data_vi(:, 2), 'ro');
 hold on;
 
+
 % plotting the decision boundary
-x1 = 3:0.1:7;
-x2 = (-w(1) * x1 - w(3)) / w(2);     % p. 334
-plot(x1, x2)
+% x1 = 3:0.1:7;
+% x2 = (-w(1) * x1 - w(3)) / w(2);     % p. 334
+% plot(x1, x2)
 
 % figure;
 % plot(loss_rec);
