@@ -1,4 +1,6 @@
 % LDA, Murphy PMLAI, Section 9.2.2
+% focus on how the equations are generated
+
 % reference: https://github.com/farnazgh/Linear-discriminant-analysis
 % reference: https://zhuanlan.zhihu.com/p/264578345
 
