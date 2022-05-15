@@ -25,7 +25,12 @@ figure;
 scatter(x1_n, x2_n)
 grid on;
 
+cov_out2 = cov(x1_n, x2_n);   % matrix
 corrcoef_out = corrcoef(x1, x2)
 corrcoef_out1 = cov(x1, x2) / (std(x1) * std(x2))
 xcorr_out = xcorr(x1, x2)
+
+% normalized output, treating the columns as features
+data_n = [x1_n, x2_n, x3_n, x4_n];
+cov_out3 = cov(data_n)
 
