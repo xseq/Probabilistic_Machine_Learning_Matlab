@@ -15,8 +15,10 @@ x = [x1, x2];
 x_cov = cov(x);
 x_mean = mean(x);
 
-
 % sample data
 x_in = x(1, :);
-prob = 
+prob = get_mvn(x_in, x_mean, x_cov);
+
+disp('probability: ')
+disp(prob)
 
