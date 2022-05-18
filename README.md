@@ -1,6 +1,6 @@
 # PML_Matlab
 
-This is a Matlab realization of the algorithms in the book Probabilistic Machine Learning: An introduction
+The scripts relates to the following book
 
 
  @book{pml1Book,
