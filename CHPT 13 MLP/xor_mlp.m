@@ -45,7 +45,8 @@ for p = 1 : epochs
     H2_out = sigmoid(H2_logit);
     
     % loss: residual sum of squares, eq. 11.6
-    loss2 = 0.5 * (H2_out - y)' * (H2_out - y);
+%     loss2 = 0.5 * (H2_out - y)' * (H2_out - y);
+    Loss2 = H2_out .* (1 - H2_out) .* (y - H2_out);
     
 end
 
