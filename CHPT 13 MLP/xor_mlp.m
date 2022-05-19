@@ -1,7 +1,7 @@
 % Multiple Layer Perceptron
 % This is a simple example of MLP for XOR
-% reference: https://matlabgeeks.com/tips-tutorials/neural-networks-a-multilayer-perceptron-in-matlab/
-
+% general reference: https://matlabgeeks.com/tips-tutorials/neural-networks-a-multilayer-perceptron-in-matlab/
+% back propogation reference: https://zerowithdot.com/mlp-backpropagation/
 
 
 clear all; clc; close all;
@@ -45,7 +45,6 @@ for p = 1 : epochs
     H2_out = sigmoid(H2_logit);
     
     % loss: residual sum of squares, eq. 11.6
-%     loss2 = 0.5 * (H2_out - y)' * (H2_out - y);
     Loss2 = H2_out .* (1 - H2_out) .* (y - H2_out);
     
 end
