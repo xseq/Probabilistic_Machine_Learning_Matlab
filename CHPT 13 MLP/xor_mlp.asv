@@ -48,7 +48,7 @@ for p = 1 : epochs
     Delta2 = H2_out .* (1 - H2_out) .* (y - H2_out);
     
     % back propagation
-    Delta1 = H2_input .* (1 - H2_input) ;
+    Delta1 = H2_input .* (1 - H2_input) * Delta2;
     
 end
 
