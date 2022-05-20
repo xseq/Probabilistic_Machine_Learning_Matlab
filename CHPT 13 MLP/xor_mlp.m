@@ -52,8 +52,6 @@ end
 
 
 
-
-
 for i = 1:iterations
    out = zeros(4,1);
    numIn = length (input(:,1));
