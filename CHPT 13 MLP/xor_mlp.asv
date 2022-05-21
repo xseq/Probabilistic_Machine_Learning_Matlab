@@ -2,6 +2,7 @@
 % This is a simple example of MLP for XOR
 % general reference: https://matlabgeeks.com/tips-tutorials/neural-networks-a-multilayer-perceptron-in-matlab/
 % back propogation reference: https://zerowithdot.com/mlp-backpropagation/
+% BP video: https://www.youtube.com/watch?v=tIeHLnjs5U8
 
 
 clear all; clc; close all;
@@ -45,10 +46,14 @@ for p = 1 : epochs
     H2_out = sigmoid(H2_logit);
     
     % loss: residual sum of squares, eq. 11.6
-    Delta2 = H2_out .* (1 - H2_out) .* (y - H2_out);
+    DF2 = H2_out .* (1 - H2_out) .* (y - H2_out);
     
     % back propagation
-    Delta1 = H2_input .* (1 - H2_input) * Delta2;
+    DF1 = H2_input .* (1 - H2_input) * W2 .* DF2;
+    
+    % weight update
+    W2 = W2 + eta * H2_input' * DF2;
+    W1 = W1 + eta * X1' * DF1;
     
 end
 
