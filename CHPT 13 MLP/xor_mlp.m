@@ -1,6 +1,7 @@
 % Multiple Layer Perceptron
 % This is a simple example of MLP for XOR
 % general reference: https://matlabgeeks.com/tips-tutorials/neural-networks-a-multilayer-perceptron-in-matlab/
+% notations: https://zhuanlan.zhihu.com/p/40761721
 % back propogation reference: https://zerowithdot.com/mlp-backpropagation/
 % BP video: https://www.youtube.com/watch?v=tIeHLnjs5U8
 
@@ -14,21 +15,17 @@ X = [0, 0;
     1, 1];
 
 % labels
-y = [0;
-    1;
-    1;
-    0];
+y = [0, 1, 1, 0];
 
 % expanding X with intercept in the third row
 [n_samples, ~] = size(X);
-X1 = [X, ones(n_samples, 1)];
-X2 = ones(n_samples, 1);    % hidden layer input
+XX = [X, ones(n_samples, 1)]';
 
 % parameters
 eta = 0.7;
 epochs = 10000;
-W1 = ones(3, 2);
-W2 = ones(3, 1);
+W2 = ones(3, 2);
+W3 = ones(3, 1);
 loss_rec = zeros(epochs, 1);
 
 
@@ -37,22 +34,23 @@ loss_rec = zeros(epochs, 1);
 for p = 1 : epochs
     
     % forward propogation, hidden layer
-    H1_logit = X1 * W1;
-    H1_out = sigmoid(H1_logit);
-    H2_input = [H1_out, ones(n_samples, 1)];
+    Z2 = W2' * XX;    % shape: 2x4
+    a2 = sigmoid(Z2);    % 2x4 
+    a2e = [a2; ones(1, n_samples)];   % expanded, 3x4
     
     % forward propogation, output layer
-    H2_logit = H2_input * W2;
-    H2_out = sigmoid(H2_logit);
+    Z3 = W3' * a2e;     % 1x4
+    a3 = sigmoid(Z3);   % 1x4
     
     % loss: residual sum of squares, eq. 11.6
-    DF2 = H2_out .* (1 - H2_out) .* (y - H2_out);
+    DF3 = a3 .* (1 - a3) .* (y - a3);   % error
     
     % back propagation
-    DF1 = (H2_input .* (1 - H2_input)) * W2 .* DF2;
+    DF2 = W3' * DF3; % .* Z3 .* (1 - Z3));
     
     % weight update
-    W2 = W2 + eta * H2_input' * DF2;
+    W3 = W3 + eta * H2_input' * DF3;
+    W2 = W2 + eta * XX' * DF2;
     
 end
 

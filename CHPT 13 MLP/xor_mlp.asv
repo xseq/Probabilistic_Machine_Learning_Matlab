@@ -21,14 +21,13 @@ y = [0;
 
 % expanding X with intercept in the third row
 [n_samples, ~] = size(X);
-X1 = [X, ones(n_samples, 1)];
-X2 = ones(n_samples, 1);    % hidden layer input
+XX = [X, ones(n_samples, 1)];
 
 % parameters
 eta = 0.7;
 epochs = 10000;
-W1 = ones(3, 2);
-W2 = ones(3, 1);
+W2 = ones(3, 2);
+W3 = ones(3, 1);
 loss_rec = zeros(epochs, 1);
 
 
@@ -37,23 +36,23 @@ loss_rec = zeros(epochs, 1);
 for p = 1 : epochs
     
     % forward propogation, hidden layer
-    H1_logit = X1 * W1;
+    H1_logit = XX * W2;
     H1_out = sigmoid(H1_logit);
     H2_input = [H1_out, ones(n_samples, 1)];
     
     % forward propogation, output layer
-    H2_logit = H2_input * W2;
+    H2_logit = H2_input * W3;
     H2_out = sigmoid(H2_logit);
     
     % loss: residual sum of squares, eq. 11.6
     DF2 = H2_out .* (1 - H2_out) .* (y - H2_out);
     
     % back propagation
-    DF1 = H2_input .* (1 - H2_input) * W2 .* DF2;
+    DF1 = H2_input .* (1 - H2_input) * W3 .* DF2;
     
     % weight update
-    W2 = W2 + eta * H2_input' * DF2;
-    W1 = W1 + eta * X1' * DF1;
+    W3 = W3 + eta * H2_input' * DF2;
+    W2 = W2 + eta * XX' * DF1;
     
 end
 
