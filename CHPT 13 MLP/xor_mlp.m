@@ -13,17 +13,17 @@ clear all; clc; close all;
 X = [0, 0; 
     0, 1; 
     1, 0; 
-    1, 1];
+    1, 1]';
 
 % labels
 y = [0, 1, 1, 0];
 
 % expanding X with intercept in the third row
-[n_samples, ~] = size(X);
-XX = [X, ones(n_samples, 1)]';
+[~, n_samples] = size(X);
+XX = [X; ones(1, n_samples)];
 
 % parameters
-eta = 0.01;
+eta = 0.1;
 epochs = 10000;
 W2 = ones(3, 2);
 W3 = ones(3, 1);
@@ -47,15 +47,19 @@ for p = 1 : epochs
     loss = sum((a3 - y).^2) / n_samples;
     loss_rec(p, 1) = loss;
     
+    % errors
+    err3 = a3 .* (1 - a3) .* (y - a3);
+    err2 = Z3 .* (1 - Z3) .* (W3(1:2, :) * err3);
+    
     % partial derivative: residual sum of squares, eq. 11.6
-    DF3 = a3 .* (1 - a3) .* (y - a3); 
+    DF3 = a2e * err3'; 
     
     % back propagation
-    DF2 = Z3 .* (1 - Z3) .* (W3(1:2, :) * DF3);
+    DF2 = Z3 .* XX * err2';
     
     % weight update
-    W3 = W3 + eta * a2e * DF3';
-    W2 = W2 + eta * XX * DF2';
+    W3 = W3 + eta * DF3;
+    W2 = W2 + eta * DF2;
     
 end
 
