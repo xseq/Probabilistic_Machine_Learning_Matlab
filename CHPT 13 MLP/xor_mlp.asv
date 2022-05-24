@@ -7,7 +7,7 @@
 % Best explanation with code: https://brilliant.org/wiki/backpropagation/
 
 
-clear; clc; close all;
+clear all; clc; close all;
 
 % inputs x1 and x2
 X = [0, 0; 
@@ -23,7 +23,7 @@ y = [0, 1, 1, 0];
 XX = [X; ones(1, n_samples)];
 
 % parameters
-eta = 0.1;
+eta = 0.7;
 epochs = 10000;
 W2 = ones(3, 2);
 W3 = ones(3, 1);
@@ -31,6 +31,7 @@ loss_rec = zeros(epochs, 1);
 
 
 % training
+% Note: this is treated as a linear regression problem
 for p = 1 : epochs
     
     % forward propogation, hidden layer
@@ -46,7 +47,7 @@ for p = 1 : epochs
     loss = sum((a3 - y).^2) / n_samples;
     loss_rec(p, 1) = loss;
     
-    % delta
+    % deltas
     delta3 = a3 .* (1 - a3) .* (a3 - y);                % 1x4
     delta2 = a2 .* (1 - a2) .* (W3(1:2, :) * delta3);   % 2x4
     
