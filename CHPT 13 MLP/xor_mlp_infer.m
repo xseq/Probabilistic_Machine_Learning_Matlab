@@ -55,10 +55,6 @@ end
 
 % plot(loss_rec);
 
-% tests
-% single test case
-% T = [0.3, 0.3, 0.7, 0.7; 
-%     0.3, 0.7, 0.3, 0.7];
 
 step = 0.01;
 t = 0 : step : 1;

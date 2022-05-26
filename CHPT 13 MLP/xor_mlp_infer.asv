@@ -55,10 +55,6 @@ end
 
 % plot(loss_rec);
 
-% tests
-% single test case
-% T = [0.3, 0.3, 0.7, 0.7; 
-%     0.3, 0.7, 0.3, 0.7];
 
 step = 0.01;
 t = 0 : step : 1;
@@ -70,17 +66,16 @@ t_data = zeros(2, n_test_data);
 for p = 1 : t_len
     t_data(1, (p-1)*t_len+1 : p*t_len) = t(1, p);
     for q = 1 : t_len
-        t_data(2, q*t_len) = t(1, p);
+        t_data(2, (q-1)*t_len+p) = t(1, p);
     end
 end
        
-[~, n_samples] = size(T);
-TT = [X; ones(1, n_samples)];
+TT = [t_data; ones(1, n_test_data)];
 
 % forward propogation, hidden layer
 Z2 = W2' * TT;    % shape: 2x4
 a2 = sigmoid(Z2);    % 2x4 
-a2e = [a2; ones(1, n_samples)];   % expanded, 3x4
+a2e = [a2; ones(1, n_test_data)];   % expanded, 3x4
 
 % forward propogation, output layer
 Z3 = W3' * a2e;     % 1x4
@@ -88,11 +83,11 @@ out = sigmoid(Z3);   % 1x4
 
 figure;
 hold on;
-for p = 1 : n_samples
+for p = 1 : n_test_data
     if out(1, p) < 0.5
-        plot(T(1, p), T(2, p), 'b.', 'MarkerSize', 20);
+        plot(t_data(1, p), t_data(2, p), 'b.', 'MarkerSize', 20);
     else
-        plot(T(1, p), T(2, p), 'r.', 'MarkerSize', 20);
+        plot(t_data(1, p), t_data(2, p), 'r.', 'MarkerSize', 20);
     end
 end
 
