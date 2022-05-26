@@ -76,9 +76,9 @@ figure;
 hold on;
 for p = 1 : n_samples
     if out(1, p) < 0.5
-        plot(T(1, p), T(2, p), 'b.');
+        plot(T(1, p), T(2, p), 'b.', 'MarkerSize', 20);
     else
-        plot(T(1, p), T(2, p), 'r.');
+        plot(T(1, p), T(2, p), 'r.', 'MarkerSize', 20);
     end
 end
 
