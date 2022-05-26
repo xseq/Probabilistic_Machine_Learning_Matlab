@@ -53,10 +53,25 @@ for p = 1 : epochs
     
 end
 
-plot(loss_rec);
+% plot(loss_rec);
 
 % tests
+% single test case
+T = [0.3, 0.3, 0.7, 0.7; 
+    0.3, 0.7, 0.3, 0.7];
 
+[~, n_samples] = size(T);
+TT = [X; ones(1, n_samples)];
 
+% forward propogation, hidden layer
+Z2 = W2' * TT;    % shape: 2x4
+a2 = sigmoid(Z2);    % 2x4 
+a2e = [a2; ones(1, n_samples)];   % expanded, 3x4
 
+% forward propogation, output layer
+Z3 = W3' * a2e;     % 1x4
+a3 = sigmoid(Z3);   % 1x4
+
+figure;
+axis([0, 1, 0, 1]);
 
