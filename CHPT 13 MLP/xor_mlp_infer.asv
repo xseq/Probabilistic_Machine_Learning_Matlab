@@ -73,14 +73,13 @@ Z3 = W3' * a2e;     % 1x4
 out = sigmoid(Z3);   % 1x4
 
 figure;
-hold on;
 for p = 1 : n_samples
     if out(1, p) < 0.5
-        plot(T(1, p), T(2, p), 'b.');
+        plot(T(1, p), T(2, p) 'b.');
     else
-        plot(T(1, p), T(2, p), 'r.');
+        plot(T(:, p), 'r.');
     end
 end
 
-axis([0, 1, 0, 1]);
+%axis([0, 1, 0, 1]);
 
