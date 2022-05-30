@@ -19,7 +19,7 @@
 clear; clc; close all;
 warning off;
 
-[~, ~, iris_data] = xlsread('./data/iris.xlsx');
+[~, ~, iris_data] = xlsread('../data/iris.xlsx');
 raw_data_1 = iris_data(1:50, :);         % Setosa
 raw_data_0 = iris_data(51:100, :);       % Versicolour
 
