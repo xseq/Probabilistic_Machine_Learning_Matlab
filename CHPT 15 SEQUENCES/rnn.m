@@ -13,8 +13,22 @@ data_ratio = 0.8;
 n_total_samples = length(data);
 n_train_samples = round(data_ratio * n_total_samples);
 n_test_samples = n_total_samples - n_train_samples;
-train_data = data(1 : n_train_samples);
-test_data = data(n_train_samples+1 : n_train_samples);
+% train_data = data(1 : n_train_samples);
+% test_data = data(n_train_samples+1 : n_train_samples);
+
+
+
+% 
+n_data = 1000;
+train_data = data(1 : n_data);
+train_label = data(2 : n_data+1);
+
+zt = [zt, Wih*x(K) + Whh*ht(:,K) + bh];
+ht = [ht sigmoid(zt(:,K))];
+o = [o; Who * ht(:, K + 1)];
+
+
+
 
 
 
