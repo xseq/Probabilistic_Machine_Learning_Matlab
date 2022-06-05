@@ -32,7 +32,8 @@ y_hat = [];
 
 for p = 1 : n_train_data-1
     
-[o, ht, zt] = forward(train_in, Wih, Whh, Who, bh, ht, zt, o, k);
-    
+    zt = Wih * train_data(p, 1) + Whh * ht + bh;
+    ht = sigmoid(zt);
+    o = sigmoid(Who * ht);
 
 end

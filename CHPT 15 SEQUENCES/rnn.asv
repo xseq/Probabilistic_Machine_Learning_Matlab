@@ -18,15 +18,24 @@ train_data = data(1 : n_train_data - 1);
 train_label = data(2 : n_train_data);
 
 % parameters
+eta = 0.01;
 
 % initialization
 ht = zeros(n_train_data-1, 1);
 Whh = rand(n_train_data-1, n_train_data-1);
+Wih = rand(n_train_data-1, n_train_data-1);
+Who = rand(n_train_data-1, n_train_data-1);
+bh = rand(n_train_data-1, 1);
+zt = [];
+y_hat = [];
 
 
 for p = 1 : n_train_data-1
     
-    
-    
+    zt = Wih * x(K) + Whh * ht(:,K) + bh;
+    ht = sigmoid(zt);
+    o = sigmoid(Who * ht);
+    % o = [o; sigmoid(Who * ht(:, K + 1))];
+
 
 end
