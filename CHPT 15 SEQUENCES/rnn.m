@@ -1,5 +1,6 @@
 % rnn placeholder
 % reference: https://github.com/eakgun/Time-Series-Prediction-With-RNNs
+% reference(Mandarin): https://zhuanlan.zhihu.com/p/60915302
 
 
 clear; clc; close all;
