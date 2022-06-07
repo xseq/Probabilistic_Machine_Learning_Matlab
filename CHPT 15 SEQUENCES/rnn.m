@@ -32,6 +32,7 @@ y_hat = [];
 
 for p = 1 : n_train_data-1
     
+    % forward propagation
     zt = Wih * train_data(p, 1) + Whh * ht + bh;
     ht = sigmoid(zt);
     o = sigmoid(Who * ht);
