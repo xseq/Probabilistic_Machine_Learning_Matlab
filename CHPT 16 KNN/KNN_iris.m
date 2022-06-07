@@ -22,6 +22,20 @@ warning off;
 
 load('../data/iris_split.mat');
 
+% parameters
+K = 5;
+
+% prediction
+n_train = length(train_data);
+n_test = length(test_data);
+for p = 1 : n_test
+    dist_arr = zeros(n_train, 1); % distances to all elements
+    for q = q : n_train
+        dist_arr = edist(n_test(p, :), n_train(q, :));
+    end
+    
+end
+
 
 
 % Euclidean distance
