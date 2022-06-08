@@ -22,6 +22,37 @@ warning off;
 
 load('../data/iris_split.mat');
 
+% parameters
+K = 5;
+
+% prediction
+[n_train, n_cat] = size(train_data);
+n_test = length(test_data);
+for p = 1 : n_test
+    dist_arr = zeros(n_train, 1); % distances to all elements
+    for q = 1 : n_train
+        dist_arr(q, 1) = edist(test_data(p, :), train_data(q, :));
+    end
+    [~, k_idx] = mink(dist_arr, K);   % index of K smallest numbers
+    result_table = train_label(k_idx, :);
+    results = sum();
+end
+
+
+% minimal k elements and index
+function [values, idx] = mink(arr_in, k_in)
+% TODO: check dimensions
+    n = length(arr_in);
+    values = arr_in(1 : k_in);
+    idx = 1 : k_in;  % index in the input array, not the temp array
+    for p = k_in+1 : n
+        [curr_max, max_idx] = max(values);
+        if arr_in(p) < curr_max
+            values(max_idx) = arr_in(p);
+            idx(max_idx) = p;
+        end
+    end
+end
 
 
 % Euclidean distance
@@ -31,6 +62,5 @@ function dist_out = edist(vec_in_A, vec_in_B)
     for p = 1 : len
         summ = summ + (vec_in_A(p) - vec_in_B(p))^2;
     end
-    dist_out
-
+    dist_out = sqrt(summ);
 end
