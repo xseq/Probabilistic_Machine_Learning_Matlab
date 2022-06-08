@@ -30,10 +30,10 @@ n_train = length(train_data);
 n_test = length(test_data);
 for p = 1 : n_test
     dist_arr = zeros(n_train, 1); % distances to all elements
-    for q = q : n_train
-        dist_arr = edist(n_test(p, :), n_train(q, :));
+    for q = 1 : n_train
+        dist_arr(q, 1) = edist(test_data(p, :), train_data(q, :));
     end
-    
+    [~, k_idx] = mink(dist_arr, K);   % index of K smallest numbers
 end
 
 
