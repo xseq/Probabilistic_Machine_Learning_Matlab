@@ -26,6 +26,7 @@ data_vi = cell2mat(iris_data(101:150, 1:4));      % Virginica
 
 n_att = 4;
 n_cat = 3;
+n_bin = 10;
 
 figure;
 for p = 1 : n_att
@@ -33,6 +34,10 @@ for p = 1 : n_att
         subplot(n_att, n_att, (p-1)*n_att+q);
         hold on;
         if p == q
+            histogram(data_se(:, p), n_bin);
+            histogram(data_ve(:, p), n_bin);
+            histogram(data_vi(:, p), n_bin);            
+        else
             scatter(data_se(:, p), data_se(:, q),'r', 'filled');
             scatter(data_ve(:, p), data_ve(:, q),'g', 'filled');
             scatter(data_vi(:, p), data_vi(:, q),'b', 'filled');
