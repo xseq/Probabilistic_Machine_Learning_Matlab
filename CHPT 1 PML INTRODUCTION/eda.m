@@ -2,7 +2,7 @@
 % EDA is an important data visualization method that enables the user to
 % look at the data distribution and correlaton before beginning working on
 % the data analysis. This script uses iris data set as an example and
-% follows Fig. 1.3 in the Murphy PML book.
+% replicates Fig. 1.3 in the Murphy PML book.
 
 % Dataset: iris
 % Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
@@ -45,7 +45,7 @@ for p = 1 : n_att
             scatter(data_se(:, p), data_se(:, q),'r', 'filled');
             scatter(data_ve(:, p), data_ve(:, q),'g', 'filled');
             scatter(data_vi(:, p), data_vi(:, q),'b', 'filled');
-            xlabel(features(1, p));  % TODO, doublecheck
+            xlabel(features(1, p));
             ylabel(features(1, q));
         end
         hold off;
