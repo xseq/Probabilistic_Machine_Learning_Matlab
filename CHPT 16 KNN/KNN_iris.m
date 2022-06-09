@@ -49,16 +49,16 @@ disp(recall)
 
 
 % minimal k elements and index
-function [values, idx] = mink(arr_in, k_in)
+function [values, bucket_idx] = mink(arr_in, k_in)
 % TODO: check dimensions
     n = length(arr_in);
     values = arr_in(1 : k_in);
-    idx = 1 : k_in;  % index in the input array, not the temp array
+    bucket_idx = 1 : k_in;  % index in the input array, not the temp array
     for p = k_in+1 : n
         [curr_max, max_idx] = max(values);
         if arr_in(p) < curr_max
             values(max_idx) = arr_in(p);
-            idx(max_idx) = p;
+            bucket_idx(max_idx) = p;
         end
     end
 end
