@@ -24,6 +24,9 @@ data_se = cell2mat(iris_data(1:50, 1:4));         % Setosa
 data_ve = cell2mat(iris_data(51:100, 1:4));       % Versicolour
 data_vi = cell2mat(iris_data(101:150, 1:4));      % Virginica
 
+% feature name array
+features = {'sepal length', 'sepal width', 'petal length', 'petal width'};
+
 n_att = 4;
 n_cat = 3;
 n_bin = 10;
@@ -36,11 +39,14 @@ for p = 1 : n_att
         if p == q
             histogram(data_se(:, p), n_bin);
             histogram(data_ve(:, p), n_bin);
-            histogram(data_vi(:, p), n_bin);            
+            histogram(data_vi(:, p), n_bin);  
+            xlabel(features(1, p));
         else
             scatter(data_se(:, p), data_se(:, q),'r', 'filled');
             scatter(data_ve(:, p), data_ve(:, q),'g', 'filled');
             scatter(data_vi(:, p), data_vi(:, q),'b', 'filled');
+            xlabel(features(1, p));  % TODO, doublecheck
+            ylabel(features(1, q));
         end
         hold off;
     end
