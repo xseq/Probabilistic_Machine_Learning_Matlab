@@ -1,5 +1,5 @@
 % K-nearest neighbors
-% 
+% TODO: 2=>4 reatures
 
 % Dataset: iris
 % Dua, D. and Graff, C. (2019). UCI Machine Learning Repository 
