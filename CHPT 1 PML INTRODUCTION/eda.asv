@@ -1,0 +1,16 @@
+% Exploratory Data Analysis (EDA)
+% EDA is an important data visualization method that enables the user to
+% look at the data distribution and correlaton before beginning working on
+% the data analysis. This script uses iris data set as an example and
+% follows Fig. 1.3 in the Murphy PML book.
+
+
+clear; clc; close all;
+warning off;
+
+[~, ~, iris_data] = xlsread('../data/iris.xlsx');
+raw_data_se = iris_data(1:50, 1 : 4);         % Setosa
+raw_data_ve = iris_data(51:100, 1 : 4);       % Versicolour
+raw_data_vi = iris_data(101:150, 1 : 4);      % Virginica
+
+
