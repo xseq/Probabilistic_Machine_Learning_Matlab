@@ -12,6 +12,8 @@ CONCEPTS
 * weights; bias
 * negative log likelihood (NLL)
 * maximum likelihood estimate (MLE)
+* overfitting
+* no free lunch theorem
 
 
 PROBLEMS
@@ -21,7 +23,8 @@ PROBLEMS
 
 REFERENCE
 * Why use softmax and logit? 
-- https://stackoverflow.com/questions/17187507/why-use-softmax-as-opposed-to-standard-normalization
+- (in English, see the answer of Kilian Batzner) 
+https://stackoverflow.com/questions/17187507/why-use-softmax-as-opposed-to-standard-normalization
 - (in Mandarin)
 https://www.zhihu.com/question/40403377/answer/86647017
 
