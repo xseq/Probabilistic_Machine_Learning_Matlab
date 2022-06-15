@@ -8,7 +8,6 @@ CONCEPTS
 * model uncertainty; data uncertainty
 * softmax; logits
 * logistic regression
-* regression coefficients; intercept
 * weights; bias
 * negative log likelihood (NLL)
 * maximum likelihood estimate (MLE)
