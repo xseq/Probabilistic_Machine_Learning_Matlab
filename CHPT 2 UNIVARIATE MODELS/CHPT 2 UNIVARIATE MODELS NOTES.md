@@ -8,7 +8,8 @@ CONCEPTS
 * event; sample / state space
 * random variable; discrete / continuous random variable
 * probability mass function
-* cumulative distribution function; probability density function
+* cumulative distribution function (CDF)
+* probability density function (PDF)
 * joint distribution; marginal distribution
 * product rule; chain rule of probability
 * variance; standard deviation
@@ -16,13 +17,14 @@ CONCEPTS
 * Bernoulli distribution; binominal distribution
 * sigmoid or logistic function; heavyside step function
 * categorical distribution; one hot vector; multinomial distribution
+* log-sum-exp trick
 * Gaussian / normal distribution
-
-
+* central limit theorem; independent and identically distributed
 
 
 PROBLEMS
-* 
+* Write the normal probability density function
+* What is the log-sum-exp trick? How does it relates to softmax?
 
 
 REFERENCE
@@ -30,5 +32,6 @@ REFERENCE
 
 
 SUMMARY
-The readers may frequently refer back to this chapter for the notations.
+This chapter covers the basics of the probability. The readers may 
+frequently refer back to this chapter for the notations.
 
