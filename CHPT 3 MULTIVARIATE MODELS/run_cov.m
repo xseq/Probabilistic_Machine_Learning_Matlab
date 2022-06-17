@@ -75,7 +75,7 @@ end
 function cov_mat_out = mat_cov(mat_in)
 % Case 2, matrix-wise covariance
 % inputs: one matrix, 
-% output: the covariance matrix of the vectors
+% output: the covariance matrix of the vectors in the matrix
 % each column is a vector
     [~, n_vec] = size(mat_in);
     cov_mat_out = zeros(n_vec, n_vec);
@@ -90,7 +90,7 @@ end
 function cov_mat_out = mat_xcov(mat_p, mat_q)
 % Case 3, matrix-wise covariance of two matrices
 % inputs: two matrices, 
-% output: the covariance matrix of the vectors
+% output: the covariance matrix of the matrices
 % each column is a vector
 % Note: this is called crosscovariance in Murphy book; however, the xcov
 % matrix means something different in Matlab
