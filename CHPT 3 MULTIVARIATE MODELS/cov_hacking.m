@@ -1,12 +1,16 @@
 % Based on Murphy PML1 book (2022), Chapter 3, Covariance, eq. 3.7
 % This script compares corrcoef, cov and xcorr functions
 
+% Understand the meaning of the following functions:
+% cov (on vectors and matrices), xcov, xcorr, corrcoef
+
+
 clear; clc; close all;
 warning off;
 
 [~, ~, iris_data] = xlsread('../data/iris.xlsx');
 data = cell2mat(iris_data(1:50, 1:4));         % Setosa
-n = 50;
+n = length(data);
 
 % covariance calculation
 x1 = data(:, 1);
