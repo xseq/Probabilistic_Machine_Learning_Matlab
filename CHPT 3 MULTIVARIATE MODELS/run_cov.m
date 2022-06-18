@@ -10,6 +10,8 @@
 
 % In this script, we will show how they are computed in detail
 
+% TODO: case 3 not agreeing with cov in matlab
+
 
 % loading data
 clear; clc; close all;
