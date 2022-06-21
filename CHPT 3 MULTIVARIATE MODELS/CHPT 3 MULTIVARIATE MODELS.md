@@ -2,7 +2,7 @@
 
 
 CONCEPTS
-* 
+* covariance; covariance matrix
 
 
 PROBLEMS
@@ -10,10 +10,10 @@ PROBLEMS
 
 
 REFERENCE
-* Goodfellow's chapter 3 is more concise:
-https://www.deeplearningbook.org/contents/prob.html
+* 
 
 
 SUMMARY
 Probability gets complicated when multiple variables are involved. 
+Covariance can be applied on both vectors and matrices.
 
