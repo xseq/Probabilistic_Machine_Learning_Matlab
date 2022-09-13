@@ -1,6 +1,5 @@
-# A Critique of Probabilistic Machine Learning
-
-The scripts relates to the following book
+# Based on Murphy PML1 book (2022)
+% image compression with PCA, basic version
 
 
  @book{pml1Book,
